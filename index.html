@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Royal Furniture BD | ১০০% চিটাগাং সেগুন কাঠের লাক্সারি ফার্নিচার | উত্তর বাড্ডা, ঢাকা</title>
+  <meta name="description" content="The Royal Furniture BD - এক্সক্লুসিভ সেগুন কাঠের রয়েল বেডরুম সেট, ডাইনিং টেবিল, লাক্সারি সোফা ও হোম ফার্নিচার। ২৫ বছরের গ্যারান্টি সহ ফ্রি হোম ডেলিভারি।">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            royal: {
+              900: '#0B1120',
+              800: '#0F172A',
+              700: '#1E293B',
+              600: '#334155',
+            },
+            amber: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '"Hind Siliguri"', 'sans-serif'],
+            bengali: ['"Hind Siliguri"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & Babel CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+      background-color: #0B1120;
+      color: #F8FAFC;
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #B45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .teak-card-shadow {
+      box-shadow: 0 10px 30px -10px rgba(180, 83, 9, 0.25);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="selection:bg-amber-600 selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    // Direct Contact Details
+    const BRAND_PHONE = "01858-986450";
+    const SECONDARY_PHONE = "01742-929049";
+    const WHATSAPP_NUM = "8801858986450";
+    const ADDRESS = "২৬০/৯৫, দাদার বাজার (পূবালী ব্যাংকের পাশে), সাঁতারকুল রোড, উত্তর বাড্ডা, ঢাকা-১২১২";
+
+    const PRODUCTS = [
+      {
+        id: 'roy-1',
+        title: 'ভিক্টোরিয়ান রয়েল বেডরুম সেট (ফুল প্যাকেজ)',
+        category: 'bedroom',
+        price: 165000,
+        originalPrice: 195000,
+        tag: 'সেরা অফার',
+        image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80',
+        wood: '১০০% অরিজিনাল চিটাগাং সেগুন',
+        warranty: '২৫ বছর ঘুণ ও উইপোকা মুক্ত',
+        description: 'রাজকীয় কার্ভিং সমৃদ্ধ কিং সাইজ খাট (৬x৭ ফিট), ২টি কার্ভিং সাইড বক্স, প্রিমিয়াম ওভাল মিরর ড্রেসিং টেবিল এবং ৪ পাল্লা সলিড সেগুন আলমিরা।'
+      },
+      {
+        id: 'roy-2',
+        title: 'ইম্পেরিয়াল হ্যান্ড-কার্ভড কিং সাইজ সেগুন খাট',
+        category: 'bedroom',
+        price: 72500,
+        originalPrice: 85000,
+        tag: 'হ্যান্ডমেড স্পেশাল',
+        image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80',
+        wood: '১০০% সিজনড চিটাগাং সেগুন কাঠ',
+        warranty: '২৫ বছরের লিখিত গ্যারান্টি',
+        description: 'দক্ষ কারিগরদের নিখুঁত হাত খোদাই কাজ। হেডবোর্ড ও লেগবোর্ডে গভীর কার্ভিং এবং লাক্সারি এন্টিক গোল্ডেন হাইলাইট পলিশ।'
+      },
+      {
+        id: 'roy-3',
+        title: 'ইম্পেরিয়াল মার্বেল টপ ৬-চেয়ার ডাইনিং টেবিল',
+        category: 'dining',
+        price: 88000,
+        originalPrice: 105000,
+        tag: 'বেস্টসেলার',
+        image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1000&q=80',
+        wood: 'সলিড সেগুন ফ্রেম + প্রিমিয়াম মার্বেল টপ',
+        warranty: '২০ বছর স্থায়িত্বের প্রতিশ্রুতি',
+        description: 'হাইজিনিক ইতালিয়ান ইম্পোর্টেড মার্বেল টপ সহ ৬টি রাজকীয় ক্রাউন-কার্ভিং কাঠের চেয়ার। কুশনে ওয়াটার-রেজিস্ট্যান্ট ভেলভেট ফেব্রিক।'
+      },
+      {
+        id: 'roy-4',
+        title: 'লাক্সারি চেস্টারফিল্ড রয়েল সোফা সেট (৩+২+১)',
+        category: 'living',
+        price: 125000,
+        originalPrice: 145000,
+        tag: 'লাক্সারি কালেকশন',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=80',
+        wood: 'চিটাগাং সেগুন ফ্রেম + আমদানিকৃত রয়েল ভেলভেট',
+        warranty: '১৫ বছর ফোম ও ফ্রেম গ্যারান্টি',
+        description: 'ক্লাসিক ডিপ বাটন টাফটেড চেস্টারফিল্ড ডিজাইন। ভারী কাঠের হাত খোদাইকৃত পায়া এবং আরামদায়ক হাই-ডেনসিটি মেমোরি ফোম।'
+      },
+      {
+        id: 'roy-5',
+        title: 'কুইন অ্যান কার্ভিং ভিন্টেজ ড্রেসিং টেবিল',
+        category: 'storage',
+        price: 38500,
+        originalPrice: 45000,
+        tag: 'এক্সক্লুসিভ',
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1000&q=80',
+        wood: '১০০% চিটাগাং সেগুন কাঠ',
+        warranty: '২৫ বছর ঘুণমুক্ত ওয়ারেন্টি',
+        description: 'বেভেলড এজ গোল্ডেন রাজকীয় আয়না, ৪টি স্মুথ স্লাইডিং ড্রয়ার ও সাথে একটি ম্যাচিং কার্ভিং কুশন স্টুল।'
+      },
+      {
+        id: 'roy-6',
+        title: '৪-পাল্লা ক্লাসিক সলিড সেগুন আলমিরা (ওয়ার্ডরোব)',
+        category: 'storage',
+        price: 82000,
+        originalPrice: 95000,
+        tag: 'পপুলার',
+        image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000&q=80',
+        wood: '১০০% পাকা চিটাগাং সেগুন কাঠ',
+        warranty: '২৫ বছরের রিপ্লেসমেন্ট গ্যারান্টি',
+        description: 'ভেতরে সিক্রেট ক্যাশ লকার, হ্যাঙ্গার জোন, ফোল্ডিং তাক এবং ড্রয়ার। অটোমেটিক সেফটি ম্যাগনেটিক লক সিস্টেম।'
+      },
+      {
+        id: 'roy-7',
+        title: 'মোঘল ডিজাইনার রয়েল কাঠের ডিভান / লাউঞ্জ সোফা',
+        category: 'living',
+        price: 42000,
+        originalPrice: 49000,
+        tag: 'ক্লাসিক লুক',
+        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80',
+        wood: 'চিটাগাং সেগুন কাঠ + টার্কিশ ডামাস্ক ফেব্রিক',
+        warranty: '২০ বছর কাঠ গ্যারান্টি',
+        description: 'ড্রয়িং রুম বা লিভিং রুমের কর্নার সাজাতে অনন্য মোঘল আর্চ কার্ভিং ডিভান। সাথে ২টি ম্যাচিং বোম্বাস্টিক কুশন।'
+      },
+      {
+        id: 'roy-8',
+        title: 'এক্সক্লুসিভ সেগুন সেন্টার টেবিল উইথ ৪-সিটার পাফ',
+        category: 'living',
+        price: 26500,
+        originalPrice: 32000,
+        tag: 'কম্প্যাক্ট স্পেস',
+        image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=1000&q=80',
+        wood: 'সলিড সেগুন কাঠ + ১০ মিমি টেম্পার্ড গ্লাস',
+        warranty: '১৫ বছর কাঠের স্থায়িত্ব',
+        description: 'টেমপার্ড গ্লাস টপের নিচে আধুনিক কার্ভিং ও নিচে ৪টি সুন্দর বসার কুশন পাফ লুকিয়ে রাখার স্মার্ট সিস্টেম।'
+      }
+    ];
+
+    const POLISH_OPTIONS = [
+      { id: 'natural', name: 'ন্যাচারাল চিটাগাং সেগুন (Golden Amber)', hex: '#D97706' },
+      { id: 'walnut', name: 'এন্টিক রিচ ওয়ালনাট (Antique Walnut)', hex: '#78350F' },
+      { id: 'mahogany', name: 'ইম্পেরিয়াল বার্নিশড মেহগনি (Deep Mahogany)', hex: '#451A03' },
+      { id: 'vintage_matte', name: 'ম্যাট ভিন্টেজ রাস্টিক (Vintage Matte)', hex: '#A16207' }
+    ];
+
+    function App() {
+      const [selectedCategory, setSelectedCategory] = useState('all');
+      const [selectedPolish, setSelectedPolish] = useState('natural');
+      const [orderModalProduct, setOrderModalProduct] = useState(null);
+      
+      // Order Form State
+      const [customerName, setCustomerName] = useState('');
+      const [customerPhone, setCustomerPhone] = useState('');
+      const [customerAddress, setCustomerAddress] = useState('');
+      const [selectedDistrict, setSelectedDistrict] = useState('dhaka');
+      const [customNote, setCustomNote] = useState('');
+      const [orderPolish, setOrderPolish] = useState('natural');
+
+      const filteredProducts = useMemo(() => {
+        if (selectedCategory === 'all') return PRODUCTS;
+        return PRODUCTS.filter(p => p.category === selectedCategory);
+      }, [selectedCategory]);
+
+      const deliveryCharge = selectedDistrict === 'dhaka' ? 0 : 1500;
+
+      const handleOpenOrder = (product) => {
+        setOrderModalProduct(product);
+        setOrderPolish(selectedPolish);
+      };
+
+      const handleConfirmWhatsApp = (e) => {
+        e.preventDefault();
+        if (!customerName || !customerPhone || !customerAddress) {
+          alert('দয়া করে আপনার নাম, মোবাইল নম্বর এবং ঠিকানা পূরণ করুন।');
+          return;
+        }
+
+        const polishObj = POLISH_OPTIONS.find(p => p.id === orderPolish) || POLISH_OPTIONS[0];
+        const totalAmount = orderModalProduct.price + deliveryCharge;
+
+        const message = 
+`👑 *The Royal Furniture BD - নতুন ফার্নিচার বুকিং অর্ডার* 👑
+
+🏷️ *প্রোডাক্ট:* ` + orderModalProduct.title + `
+💰 *মূল্য:* ৳` + orderModalProduct.price.toLocaleString('en-IN') + `
+🎨 *পলিশ ফিনিশ:* ` + polishObj.name + `
+🪵 *কাঠের ধরণ:* ` + orderModalProduct.wood + `
+
+👤 *কাস্টমারের নাম:* ` + customerName + `
+📞 *মোবাইল নম্বর:* ` + customerPhone + `
+📍 *ডেলিভারি ঠিকানা:* ` + customerAddress + `
+🚚 *এলাকা:* ` + (selectedDistrict === 'dhaka' ? 'ঢাকা সিটি (ফ্রি হোম ডেলিভারি ৳০)' : 'ঢাকার বাইরে (নিজস্ব পরিবহনে নিরাপদ ডেলিভারি ৳১,৫০০)') + `
+💵 *সর্বমোট প্রদেয়:* ৳` + totalAmount.toLocaleString('en-IN') + `
+
+📝 *অতিরিক্ত রিকোয়ারমেন্ট:* ` + (customNote || 'কোনো বিশেষ নির্দেশনা নেই') + `
+
+_আমি ওয়েবসাইট ডেমো থেকে সরাসরি বুকিং পাঠালাম। দয়া করে অর্ডার কনফার্ম করে বিস্তারিত জানান।_`;
+
+        const encoded = encodeURIComponent(message);
+        window.open('https://wa.me/' + WHATSAPP_NUM + '?text=' + encoded, '_blank');
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col bg-[#0B1120] text-slate-100">
+          
+          {/* Concept Demo Notification Banner */}
+          <div className="bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 text-amber-100 px-4 py-2.5 text-xs md:text-sm font-medium border-b border-amber-600/40 shadow-sm">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
+              <div className="flex items-center gap-2 justify-center">
+                <span className="bg-amber-400 text-royal-900 px-2 py-0.5 rounded text-[11px] font-black tracking-wider uppercase">কনসেপ্ট ডেমো</span>
+                <span>The Royal Furniture BD-এর জন্য বিশেষভাবে প্রস্তুতকৃত এক্সক্লুসিভ ডিজিটাল শোরুম</span>
+              </div>
+              <div className="text-amber-200 text-xs flex items-center gap-3">
+                <span>প্রস্তুতকারী: <a href="https://cryptowebbuild.com" target="_blank" rel="noopener" className="underline font-bold text-white hover:text-amber-300">CryptoWebBuild</a></span>
+                <span className="hidden md:inline">•</span>
+                <span className="text-amber-300">হটলাইন: {BRAND_PHONE}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Luxury Navigation Header */}
+          <header className="sticky top-0 z-40 bg-royal-900/95 backdrop-blur-md border-b border-amber-500/20 shadow-xl">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+              
+              {/* Brand Logo & Royal Insignia */}
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 p-0.5 shadow-lg shadow-amber-500/20 flex items-center justify-center">
+                  <div className="w-full h-full bg-royal-900 rounded-[10px] flex items-center justify-center text-amber-400 font-cinzel text-xl font-bold">
+                    👑
+                  </div>
+                </div>
+                <div>
+                  <h1 className="font-cinzel text-lg md:text-2xl font-bold tracking-wider gold-gradient">
+                    THE ROYAL FURNITURE
+                  </h1>
+                  <p className="text-[10px] md:text-xs text-amber-400/80 font-medium tracking-widest uppercase">
+                    Chittagong Teak Wood • 13K Verified Followers
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 md:gap-4">
+                <a 
+                  href={'tel:' + BRAND_PHONE}
+                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-royal-800 hover:bg-royal-700 border border-amber-500/30 text-amber-300 text-xs md:text-sm font-semibold transition"
+                >
+                  <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                  <span>{BRAND_PHONE}</span>
+                </a>
+
+                <a 
+                  href={'https://wa.me/' + WHATSAPP_NUM}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm font-bold shadow-lg shadow-emerald-900/30 transition transform hover:-translate-y-0.5"
+                >
+                  <span className="text-base">💬</span>
+                  <span>WhatsApp বুকিং</span>
+                </a>
+              </div>
+            </div>
+          </header>
+
+          {/* Hero Section */}
+          <section className="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 border-b border-amber-900/30 bg-gradient-to-b from-royal-900 via-royal-800 to-royal-900">
+            {/* Background Glow */}
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                {/* Text Content */}
+                <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+                  
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>সাঁতারকুল রোড, উত্তর বাড্ডা নিজস্ব কারখানা ও শোরুম</span>
+                  </div>
+
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight font-cinzel">
+                    ১০০% খাঁটি চিটাগাং সেগুন কাঠের <br />
+                    <span className="gold-gradient font-bengali">অভিজাত রাজকীয় আসবাবপত্র</span>
+                  </h2>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-bengali">
+                    ঘর সাজান বংশপরম্পরায় টিকে থাকার মতো খাঁটি চিটাগাং সেগুন কাঠের শৈল্পিক কারুকাজে। ২৫ বছরের লিখিত স্থায়িত্বের প্রতিশ্রুতি সহ নিজস্ব কারখানায় তৈরি প্রতিটি ফার্নিচারে পাবেন নিখুঁত ফিনিশিং ও লাক্সারি স্পর্শ।
+                  </p>
+
+                  {/* 4 Pillars Trust Badges */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div className="p-3 rounded-xl bg-royal-800/80 border border-amber-500/20 text-center">
+                      <div className="text-xl mb-1">🪵</div>
+                      <h4 className="text-xs font-bold text-amber-300">১০০% চিটাগাং সেগুন</h4>
+                      <p className="text-[10px] text-slate-400">সিজনড ও কেমিক্যাল ট্রিটেড</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-royal-800/80 border border-amber-500/20 text-center">
+                      <div className="text-xl mb-1">🛡️</div>
+                      <h4 className="text-xs font-bold text-amber-300">২৫ বছর গ্যারান্টি</h4>
+                      <p className="text-[10px] text-slate-400">ঘুণ ও ফাটল মুক্ত ওয়ারেন্টি</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-royal-800/80 border border-amber-500/20 text-center">
+                      <div className="text-xl mb-1">🚚</div>
+                      <h4 className="text-xs font-bold text-amber-300">ফ্রি হোম ডেলিভারি</h4>
+                      <p className="text-[10px] text-slate-400">ঢাকা সিটিতে ফ্রি ফিটিং সহ</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-royal-800/80 border border-amber-500/20 text-center">
+                      <div className="text-xl mb-1">👑</div>
+                      <h4 className="text-xs font-bold text-amber-300">কাস্টম পলিশ চয়েস</h4>
+                      <p className="text-[10px] text-slate-400">পছন্দমতো রঙের ফিনিশিং</p>
+                    </div>
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a 
+                      href="#collection"
+                      className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-royal-950 font-extrabold text-sm shadow-xl shadow-amber-500/20 text-center transition"
+                    >
+                      রাজকীয় কালেকশন দেখুন
+                    </a>
+                    <a 
+                      href={'https://wa.me/' + WHATSAPP_NUM}
+                      target="_blank"
+                      rel="noopener"
+                      className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-royal-800 hover:bg-royal-700 border border-amber-400/30 text-amber-300 text-sm font-bold text-center transition flex items-center justify-center gap-2"
+                    >
+                      <span>💬 কাস্টম সাইজ আলোচনা</span>
+                    </a>
+                  </div>
+
+                </div>
+
+                {/* Hero Showcase Card */}
+                <div className="lg:col-span-5 relative">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 teak-card-shadow bg-royal-800 group">
+                    <img 
+                      src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80" 
+                      alt="Victorian Royal Bedroom Set" 
+                      className="w-full h-80 sm:h-96 object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-royal-950 via-transparent to-black/30"></div>
+                    
+                    <div className="absolute top-4 right-4 bg-amber-500 text-royal-950 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                      ফ্ল্যাগশিপ মডেল
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-royal-900/90 backdrop-blur-md border border-amber-500/30">
+                      <div className="flex justify-between items-end">
+                        <div>
+                          <p className="text-amber-400 text-xs font-bold font-bengali">চিটাগাং সেগুন কার্ভিং</p>
+                          <h3 className="text-white text-base font-bold font-cinzel">ভিক্টোরিয়ান রয়েল বেডরুম সেট</h3>
+                          <p className="text-xs text-slate-300">কিং সাইজ খাট + ড্রেসিং টেবিল + আলমিরা</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs text-slate-400 line-through">৳১,৯৫,০০০</p>
+                          <p className="text-lg font-black text-amber-400">৳১,৬৫,০০০</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleOpenOrder(PRODUCTS[0])}
+                        className="w-full mt-3 py-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs rounded-lg transition"
+                      >
+                        ১-ক্লিকে WhatsApp বুকিং করুন
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Interactive Wood Polish Customizer Bar */}
+          <section className="bg-royal-900/90 border-b border-amber-500/20 py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-3 text-center md:text-left">
+                  <span className="text-2xl">🎨</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-amber-300 font-cinzel">INTERACTIVE WOOD POLISH PREVIEW</h3>
+                    <p className="text-xs text-slate-400">যেকোনো ফার্নিচারের জন্য আপনার পছন্দের ফিনিশিং সিলেক্ট করুন</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {POLISH_OPTIONS.map((polish) => (
+                    <button
+                      key={polish.id}
+                      onClick={() => setSelectedPolish(polish.id)}
+                      className={'flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition border ' + (
+                        selectedPolish === polish.id
+                          ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-md shadow-amber-500/10'
+                          : 'bg-royal-800/80 border-slate-700 text-slate-300 hover:border-slate-500'
+                      )}
+                    >
+                      <span className="w-3.5 h-3.5 rounded-full border border-white/30" style={{ backgroundColor: polish.hex }}></span>
+                      <span>{polish.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Catalog Section */}
+          <section id="collection" className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
+            
+            <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-400 font-cinzel">Exclusive Masterpieces</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-cinzel">
+                রাজকীয় আসবাবপত্র ক্যাটালগ
+              </h2>
+              <p className="text-slate-400 text-xs sm:text-sm">
+                পছন্দের আইটেমে ক্লিক করে ফিনিশিং কালার নির্ধারণ করুন এবং সরাসরি WhatsApp-এ হোম ডেলিভারির জন্য বুক করুন।
+              </p>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+              {[
+                { id: 'all', label: 'সব কালেকশন (All)' },
+                { id: 'bedroom', label: 'রয়েল বেডরুম সেট' },
+                { id: 'dining', label: 'এক্সক্লুসিভ ডাইনিং সেট' },
+                { id: 'living', label: 'লাক্সারি সোফা ও ডিভান' },
+                { id: 'storage', label: 'ড্রেসিং টেবিল ও আলমিরা' },
+              ].map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={'whitespace-nowrap px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition ' + (
+                    selectedCategory === cat.id
+                      ? 'bg-amber-500 text-royal-950 shadow-lg shadow-amber-500/20'
+                      : 'bg-royal-800/90 text-slate-300 hover:bg-royal-700 border border-slate-700/60'
+                  )}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Product Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map(product => {
+                const polishObj = POLISH_OPTIONS.find(p => p.id === selectedPolish);
+                return (
+                  <div 
+                    key={product.id}
+                    className="rounded-2xl bg-royal-800/90 border border-amber-500/20 overflow-hidden flex flex-col justify-between hover:border-amber-400/50 transition duration-300 group teak-card-shadow"
+                  >
+                    <div>
+                      {/* Image & Tag */}
+                      <div className="relative h-60 overflow-hidden bg-slate-900">
+                        <img 
+                          src={product.image} 
+                          alt={product.title} 
+                          className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute top-3 left-3 bg-amber-500 text-royal-950 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                          {product.tag}
+                        </div>
+                        <div className="absolute top-3 right-3 bg-royal-900/80 backdrop-blur-md border border-amber-500/30 text-amber-300 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
+                          🛡️ {product.warranty}
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-5 space-y-3">
+                        <div className="flex items-center gap-2 text-[11px] text-amber-400/90 font-medium">
+                          <span>🪵 {product.wood}</span>
+                        </div>
+
+                        <h3 className="text-base font-bold text-white leading-snug group-hover:text-amber-300 transition">
+                          {product.title}
+                        </h3>
+
+                        <p className="text-xs text-slate-400 leading-relaxed font-bengali">
+                          {product.description}
+                        </p>
+
+                        {/* Selected Polish Indicator */}
+                        <div className="pt-1 flex items-center justify-between text-[11px] text-slate-300 border-t border-slate-700/50">
+                          <span>নির্বাচিত পলিশ:</span>
+                          <span className="font-semibold text-amber-300 flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: polishObj.hex }}></span>
+                            {polishObj.name.split('(')[0]}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Price & Button */}
+                    <div className="p-5 pt-0">
+                      <div className="flex items-baseline justify-between mb-3">
+                        <div>
+                          <span className="text-xs text-slate-500 line-through">৳{product.originalPrice.toLocaleString('en-IN')}</span>
+                          <div className="text-xl font-extrabold text-amber-400 font-cinzel">
+                            ৳{product.price.toLocaleString('en-IN')}
+                          </div>
+                        </div>
+                        <span className="text-[11px] text-emerald-400 font-semibold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">
+                          ফ্রি ফিটিং
+                        </span>
+                      </div>
+
+                      <button
+                        onClick={() => handleOpenOrder(product)}
+                        className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-royal-950 font-bold text-xs shadow-md transition flex items-center justify-center gap-2"
+                      >
+                        <span>১-ক্লিকে WhatsApp বুকিং</span>
+                        <span>➔</span>
+                      </button>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+
+          </section>
+
+          {/* Workshop & Trust Assurance Banner */}
+          <section className="bg-gradient-to-r from-royal-900 via-royal-800 to-royal-900 border-t border-b border-amber-500/20 py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-royal-900/80 rounded-2xl border border-amber-500/30 p-6 md:p-10 shadow-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+                  
+                  <div className="space-y-2">
+                    <span className="text-xs uppercase tracking-widest text-amber-400 font-bold">কারখানা ও শোরুম ভিজিট</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white font-cinzel">সরাসরি কাঠ দেখে অর্ডার করুন</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      অর্ডারের পূর্বে আমাদের সাঁতারকুল রোড কারখানায় এসে কাঠের কোয়ালিটি, খোদাই ও পলিশ স্বচক্ষে দেখার সাদর আমন্ত্রণ রইল।
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-royal-800/80 border border-slate-700 text-left space-y-2">
+                    <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                      <span>📍 শোরুম ও ফ্যাক্টরি ঠিকানা:</span>
+                    </div>
+                    <p className="text-xs text-slate-200">
+                      {ADDRESS}
+                    </p>
+                    <p className="text-xs text-amber-300/80">
+                      📞 হটলাইন: {BRAND_PHONE} / {SECONDARY_PHONE}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-3 justify-center">
+                    <a
+                      href={'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent('আসসালামু আলাইকুম, আমি The Royal Furniture BD এর কারখানা ও শোরুম ভিজিট করার জন্য লোকেশন জানতে চাচ্ছি।')}
+                      target="_blank"
+                      rel="noopener"
+                      className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs text-center shadow-lg transition"
+                    >
+                      গুগল ম্যাপস লোকেশন চান
+                    </a>
+                    <a
+                      href={'tel:' + BRAND_PHONE}
+                      className="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 border border-amber-500/30 text-amber-300 font-bold text-xs text-center transition"
+                    >
+                      সরাসরি কথা বলুন
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer & Backlink */}
+          <footer className="bg-royal-950 text-slate-400 py-12 border-t border-slate-800 text-xs">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="space-y-3 md:col-span-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">👑</span>
+                    <h4 className="text-base font-bold text-white font-cinzel gold-gradient">THE ROYAL FURNITURE BD</h4>
+                  </div>
+                  <p className="text-slate-400 leading-relaxed pr-6">
+                    ১০০% সিজনড চিটাগাং সেগুন কাঠের প্রিমিয়াম লাক্সারি আসবাবপত্র প্রস্তুতকারক। ২৫ বছরের স্থায়িত্বের গ্যারান্টি সহ সম্পূর্ণ ক্যাশ অন হোম ডেলিভারি ও নিজস্ব ফিটিং সুবিধা।
+                  </p>
+                  <p className="text-amber-400/90 font-semibold">
+                    ফেসবুক পেজ: facebook.com/theroyalfurniturebd (১৩,০০০+ ভেরিফাইড ফলোয়ার)
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <h5 className="font-bold text-white font-cinzel">জরুরি যোগাযোগ</h5>
+                  <p>হটলাইন: <a href={'tel:' + BRAND_PHONE} className="text-amber-300 font-bold">{BRAND_PHONE}</a></p>
+                  <p>বিকল্প নম্বর: <a href={'tel:' + SECONDARY_PHONE} className="text-amber-300">{SECONDARY_PHONE}</a></p>
+                  <p>ইমেইল: rahadahmed8484@gmail.com</p>
+                  <p className="text-[11px] text-slate-500">সপ্তাহের ৭ দিনই খোলা (সকাল ৯টা - রাত ১০টা)</p>
+                </div>
+
+                <div className="space-y-2">
+                  <h5 className="font-bold text-white font-cinzel">নিরাপত্তা ও ডেলিভারি</h5>
+                  <p>✓ ঢাকা সিটির ভেতরে ফ্রি ফিটিং</p>
+                  <p>✓ নিজস্ব কাভার্ড ভ্যানে নিরাপদ ডেলিভারি</p>
+                  <p>✓ কাঠ ও পলিশ পছন্দ করার সুযোগ</p>
+                  <p>✓ ক্যাশ অন ডেলিভারি সুবিধা</p>
+                </div>
+              </div>
+
+              {/* Bottom Copyright & CryptoWebBuild Attribution */}
+              <div className="pt-6 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+                <p>© 2026 The Royal Furniture BD. All Rights Reserved.</p>
+                
+                <div className="flex items-center gap-2 text-slate-400">
+                  <span>Developed with passion by</span>
+                  <a 
+                    href="https://cryptowebbuild.com" 
+                    target="_blank" 
+                    rel="noopener"
+                    className="font-bold text-amber-400 hover:text-amber-300 underline transition"
+                  >
+                    CryptoWebBuild
+                  </a>
+                  <span>• DTC E-Commerce Showcase</span>
+                </div>
+              </div>
+
+            </div>
+          </footer>
+
+          {/* 1-Click WhatsApp Booking Modal / Drawer */}
+          {orderModalProduct && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+              <div className="bg-royal-900 border border-amber-500/40 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 space-y-5 shadow-2xl relative">
+                
+                {/* Close Button */}
+                <button 
+                  onClick={() => setOrderModalProduct(null)}
+                  className="absolute top-4 right-4 text-slate-400 hover:text-white bg-royal-800 p-2 rounded-full border border-slate-700"
+                >
+                  ✕
+                </button>
+
+                {/* Modal Header */}
+                <div className="border-b border-amber-500/20 pb-4">
+                  <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">ফার্নিচার বুকিং ড্রয়ার</span>
+                  <h3 className="text-lg font-bold text-white mt-1">
+                    {orderModalProduct.title}
+                  </h3>
+                  <div className="flex items-center gap-3 mt-1.5">
+                    <span className="text-xl font-extrabold text-amber-400 font-cinzel">
+                      ৳{orderModalProduct.price.toLocaleString('en-IN')}
+                    </span>
+                    <span className="text-xs text-slate-400 line-through">
+                      ৳{orderModalProduct.originalPrice.toLocaleString('en-IN')}
+                    </span>
+                    <span className="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-semibold">
+                      {orderModalProduct.wood}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Booking Form */}
+                <form onSubmit={handleConfirmWhatsApp} className="space-y-4 text-xs">
+                  
+                  {/* Polish Choice */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1.5">
+                      পছন্দের পলিশ ফিনিশ সিলেক্ট করুন:
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {POLISH_OPTIONS.map(pol => (
+                        <button
+                          type="button"
+                          key={pol.id}
+                          onClick={() => setOrderPolish(pol.id)}
+                          className={'p-2 rounded-lg text-left flex items-center gap-2 border transition ' + (
+                            orderPolish === pol.id 
+                              ? 'bg-amber-500/20 border-amber-400 text-amber-300' 
+                              : 'bg-royal-800 border-slate-700 text-slate-300'
+                          )}
+                        >
+                          <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: pol.hex }}></span>
+                          <span className="truncate">{pol.name.split('(')[0]}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Customer Name */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">
+                      আপনার নাম <span className="text-red-400">*</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="যেমন: মোঃ কামরুল হাসান"
+                      value={customerName}
+                      onChange={e => setCustomerName(e.target.value)}
+                      className="w-full bg-royal-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-400"
+                    />
+                  </div>
+
+                  {/* Customer Phone */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">
+                      মোবাইল নম্বর <span className="text-red-400">*</span>
+                    </label>
+                    <input 
+                      type="tel" 
+                      required
+                      placeholder="যেমন: 017xxxxxxxx"
+                      value={customerPhone}
+                      onChange={e => setCustomerPhone(e.target.value)}
+                      className="w-full bg-royal-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-400"
+                    />
+                  </div>
+
+                  {/* Delivery District / Area */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">
+                      ডেলিভারি এরিয়া সিলেক্ট করুন:
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedDistrict('dhaka')}
+                        className={'p-2.5 rounded-lg border font-semibold text-center ' + (
+                          selectedDistrict === 'dhaka'
+                            ? 'bg-emerald-950/60 border-emerald-400 text-emerald-300'
+                            : 'bg-royal-800 border-slate-700 text-slate-400'
+                        )}
+                      >
+                        ঢাকা সিটি (ফ্রি ফিটিং ৳০)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedDistrict('outside')}
+                        className={'p-2.5 rounded-lg border font-semibold text-center ' + (
+                          selectedDistrict === 'outside'
+                            ? 'bg-amber-950/60 border-amber-400 text-amber-300'
+                            : 'bg-royal-800 border-slate-700 text-slate-400'
+                        )}
+                      >
+                        ঢাকার বাইরে (৳১,৫০০)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Full Address */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">
+                      পূর্ণাঙ্গ ঠিকানা <span className="text-red-400">*</span>
+                    </label>
+                    <textarea 
+                      required
+                      rows="2"
+                      placeholder="বাড়ি নং, রোড নং, এলাকা ও থানার নাম..."
+                      value={customerAddress}
+                      onChange={e => setCustomerAddress(e.target.value)}
+                      className="w-full bg-royal-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-400"
+                    ></textarea>
+                  </div>
+
+                  {/* Custom Note */}
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">
+                      বিশেষ নির্দেশনা / রুমের সাইজ (যদি থাকে):
+                    </label>
+                    <input 
+                      type="text" 
+                      placeholder="যেমন: বেডরুমের সাইজ ১২x১৪ ফিট, একটু ডার্ক ফিনিশ লাগবে"
+                      value={customNote}
+                      onChange={e => setCustomNote(e.target.value)}
+                      className="w-full bg-royal-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-400"
+                    />
+                  </div>
+
+                  {/* Price Summary Calculation */}
+                  <div className="p-3 rounded-xl bg-royal-950 border border-amber-500/30 space-y-1.5">
+                    <div className="flex justify-between text-slate-400">
+                      <span>ফার্নিচার মূল্য:</span>
+                      <span className="font-semibold text-white">৳{orderModalProduct.price.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400">
+                      <span>ডেলিভারি ও ইন্সটলেশন ফি:</span>
+                      <span className="font-semibold text-emerald-400">
+                        {deliveryCharge === 0 ? 'ফ্রি (৳০)' : '৳১,৫০০'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm font-bold text-amber-400 border-t border-slate-800 pt-1.5">
+                      <span>সর্বমোট প্রদেয়:</span>
+                      <span className="font-cinzel text-base">
+                        ৳{(orderModalProduct.price + deliveryCharge).toLocaleString('en-IN')}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-sm shadow-xl shadow-emerald-950/50 transition flex items-center justify-center gap-2"
+                  >
+                    <span>💬 WhatsApp-এ বুকিং নিশ্চিত করুন</span>
+                    <span>➔</span>
+                  </button>
+
+                  <p className="text-[10px] text-center text-slate-400">
+                    🔒 ক্যাশ অন ডেলিভারি সুবিধা • ডেলিভারির সময় ফার্নিচার পরীক্ষা করে মূল্য পরিশোধ করতে পারবেন।
+                  </p>
+
+                </form>
+
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
